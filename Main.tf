@@ -6,14 +6,12 @@ resource "google_service_account" "default" {
 resource "google_container_cluster" "primary" {
   name     = "${var.cluster_name}-cluster"
   location = var.region
-
-  remove_default_node_pool = true
-  initial_node_count       = 2
+  initial_node_count = 1
   enable_autopilot = true
-  node_config { 
+  node_config {
     machine_type = "e2-medium"
   }
-  network = "default"
+  network    = "default"
   subnetwork = "default"
 }
 
@@ -29,7 +27,7 @@ resource "google_container_node_pool" "primary_preemptible_nodes" {
 
 
     service_account = google_service_account.default.email
-    oauth_scopes    = [
+    oauth_scopes = [
       "https://www.googleapis.com/auth/cloud-platform"
     ]
   }
