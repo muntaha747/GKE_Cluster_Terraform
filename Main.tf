@@ -13,6 +13,7 @@ resource "google_container_cluster" "primary" {
   }
   network    = "default"
   subnetwork = "default"
+  deletion_protection = false
 }
 
 resource "google_container_node_pool" "primary_preemptible_nodes" {
