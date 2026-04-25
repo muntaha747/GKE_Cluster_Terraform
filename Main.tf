@@ -16,15 +16,15 @@ resource "google_container_cluster" "primary" {
   deletion_protection = false
 }
 
-resource "google_container_node_pool" "primary_preemptible_nodes" {
-  name       = "${var.cluster_name}-node-pool"
-  location   = var.region
-  cluster    = google_container_cluster.primary.id
-  node_count = 2
+# resource "google_container_node_pool" "primary_preemptible_nodes" {
+#   name       = "${var.cluster_name}-node-pool"
+#   location   = var.region
+#   cluster    = google_container_cluster.primary.id
+#   node_count = 2
 
-  node_config {
-    preemptible  = true
-    machine_type = "e2-medium"
+#   node_config {
+#     preemptible  = true
+#     machine_type = "e2-medium"
 
 
     service_account = google_service_account.default.email
